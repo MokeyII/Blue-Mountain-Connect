@@ -24,28 +24,32 @@ namespace Blue_Mountain_Connect
         private void metroBtnLogin_Click(object sender, EventArgs e)
         {
 
-
             try
             {
+         
+                
                 //Connection String
                 MySqlConnection conn = new MySqlConnection("server=192.168.0.78;Port=3306;database=BMEConnect;uid=BMEadmin;Pwd=Admin1234!$;");
-                
+
                 //Select String
                 MySqlCommand cmd = new MySqlCommand("SELECT * FROM BMEConnect.credentials WHERE Username=@Username AND Password=@Password", conn);
 
+                string salt = "abc1@3$5^7*9)-+xyz";
+                String hashedPassword = Credentials.GenerateSHA256Hash(metroTxtPassword.Text, salt);
+
                 //Parameters
-                cmd.Parameters.AddWithValue("@Username",metroTxtUsername.Text);
-                cmd.Parameters.AddWithValue("@Password",metroTxtPassword.Text);
+                cmd.Parameters.AddWithValue("@Username", metroTxtUsername.Text);
+                cmd.Parameters.AddWithValue("@Password", hashedPassword);
 
                 // Define DataReader
                 MySqlDataReader myReader;
-                
+
                 //Open Connection
                 conn.Open();
-                
+
                 //Execute DataReader
                 myReader = cmd.ExecuteReader();
-                
+
                 //Login 
                 //Count = 0
                 int count = 0;
@@ -65,10 +69,10 @@ namespace Blue_Mountain_Connect
                 else
                 {
                     //If Count doesn't == 1 then show
-                
+
                     //Incorrect login Credentials
                     MetroMessageBox.Show(this, "Incorrect Username or Password! Please Try Again!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    
+
                     // Refocus Username TxtBox, makes user interface easier
                     metroTxtUsername.Focus();
                 }
@@ -76,7 +80,7 @@ namespace Blue_Mountain_Connect
             //Catch Exception
             catch (Exception ex)
             {
-                MetroMessageBox.Show(this, ex.Message, "SQL ERROR",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MetroMessageBox.Show(this, ex.Message, "SQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -99,7 +103,7 @@ namespace Blue_Mountain_Connect
         private void metroTxtPassword_KeyPress(object sender, KeyPressEventArgs e)
         {
             //If Keypress on Password (Enter)
-            if(e.KeyChar == (char)13)
+            if (e.KeyChar == (char)13)
             {
                 //Click Submit button
                 metroBtnLogin.PerformClick();

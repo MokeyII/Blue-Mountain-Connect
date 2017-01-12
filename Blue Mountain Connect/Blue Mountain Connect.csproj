@@ -130,6 +130,7 @@
     <Compile Include="ContactList.Designer.cs">
       <DependentUpon>ContactList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Credentials.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
