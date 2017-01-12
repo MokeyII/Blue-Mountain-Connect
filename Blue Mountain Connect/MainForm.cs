@@ -20,6 +20,8 @@ namespace Blue_Mountain_Connect
         {
             //For Splash Screen
             //New Thread
+
+            //test
             Thread tThread = new Thread(new ThreadStart(SplashStart));
             //Start Thread
             tThread.Start();
