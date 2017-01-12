@@ -29,9 +29,7 @@ namespace Blue_Mountain_Connect
             return Convert.ToBase64String(hash);
         }
 
-        public void GetCreds()
-        {
-
-        }
+        public string Username { get; set; }
+        public string Password { get; set; }
     }
 }

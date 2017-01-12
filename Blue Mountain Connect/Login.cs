@@ -36,9 +36,12 @@ namespace Blue_Mountain_Connect
 
                 String hashedPassword = logIn.GenHash(metroTxtPassword.Text, logIn.salt);
 
-                //Parameters
-                cmd.Parameters.AddWithValue("@Username", metroTxtUsername.Text);
-                cmd.Parameters.AddWithValue("@Password", hashedPassword);
+                // Parameters
+                logIn.Username = metroTxtUsername.Text;
+                logIn.Password = hashedPassword;
+
+                cmd.Parameters.AddWithValue("@Username", logIn.Username);
+                cmd.Parameters.AddWithValue("@Password", logIn.Password);
 
                 // Define DataReader
                 MySqlDataReader myReader;
