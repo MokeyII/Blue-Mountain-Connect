@@ -173,5 +173,52 @@ namespace Blue_Mountain_Connect
             Login fLogin = new Login();
             fLogin.Show();
         }
+
+        private void btnAllNonCompletedTasks_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //Selection String
+                string selectCompleted = "SELECT * FROM `tasks`";
+
+                //DataAdapter
+                myDA = new MySqlDataAdapter(selectCompleted, conn);
+
+                //MySqlCommand
+                MySqlCommand myCMD = new MySqlCommand(selectCompleted, conn);
+
+                //DataAdapter to Command
+                myDA.SelectCommand = myCMD;
+
+                //Define Datatable
+                myDT = new DataTable();
+
+                //Command Builder (IS GOD!)
+                MySqlCommandBuilder cb = new MySqlCommandBuilder(myDA);
+
+                //Teach Command builder to be a boss!
+                myDA.UpdateCommand = cb.GetUpdateCommand();
+                myDA.InsertCommand = cb.GetInsertCommand();
+                myDA.DeleteCommand = cb.GetDeleteCommand();
+
+                //Fill the DataTable with DataAdapter information
+                myDA.Fill(myDT);
+
+                //Fill DataTable with Database Schema
+                myDA.FillSchema(myDT, SchemaType.Source);
+
+                //Bind The Data Table to the DataGrid
+                metroGrid1.DataSource = myDT;
+
+                //AutoSize Datagrid Rows and Colums to fit the Datagrid
+                metroGrid1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                metroGrid1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            }
+            //Catch Exception
+            catch (Exception ex)
+            {
+                MetroMessageBox.Show(this, ex.Message, "SQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

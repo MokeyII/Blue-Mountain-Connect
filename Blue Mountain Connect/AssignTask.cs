@@ -102,8 +102,6 @@ namespace Blue_Mountain_Connect
                 
                 //Clear Previous Entries after "OK" Button from MetroMessageBox
                 metroTxtTaskName.Clear();
-                metroCmbDepartment.Items.Clear();
-                metroCmbName.Items.Clear();
                 metroTxtTaskDescription.Clear();
                 metroTxtBrowserDirectory.Clear();
             }
