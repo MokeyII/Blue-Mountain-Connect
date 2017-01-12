@@ -60,6 +60,7 @@ namespace Blue_Mountain_Connect
                     //Show Assign Task 
                     AssignTask fAssignTask = new AssignTask();
                     fAssignTask.Show();
+                    this.Hide();
                 }
                 else
                 {
