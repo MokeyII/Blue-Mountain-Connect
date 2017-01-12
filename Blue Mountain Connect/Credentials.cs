@@ -19,7 +19,7 @@ namespace Blue_Mountain_Connect
             return Convert.ToBase64String(buff);
         }
         
-        public String Hash(String input, String salt)
+        public String GenHash(String input, String salt)
         {
             byte[] bytes = Encoding.UTF8.GetBytes(input + salt);
             System.Security.Cryptography.SHA256Managed sha256hashstring =
@@ -27,6 +27,11 @@ namespace Blue_Mountain_Connect
             byte[] hash = sha256hashstring.ComputeHash(bytes);
 
             return Convert.ToBase64String(hash);
+        }
+
+        public void GetCreds()
+        {
+
         }
     }
 }

@@ -34,7 +34,7 @@ namespace Blue_Mountain_Connect
 
                 Credentials logIn = new Credentials();
 
-                String hashedPassword = logIn.Hash(metroTxtPassword.Text, logIn.salt);
+                String hashedPassword = logIn.GenHash(metroTxtPassword.Text, logIn.salt);
 
                 //Parameters
                 cmd.Parameters.AddWithValue("@Username", metroTxtUsername.Text);
@@ -63,7 +63,7 @@ namespace Blue_Mountain_Connect
                     //Show Assign Task 
                     AssignTask fAssignTask = new AssignTask();
                     fAssignTask.Show();
-                    this.Close();
+                    this.Hide();
                 }
                 else
                 {
