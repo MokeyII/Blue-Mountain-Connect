@@ -60,7 +60,7 @@ namespace Blue_Mountain_Connect
             try
             {
                 //Open Chat 
-                System.Diagnostics.Process.Start("C:/Program Files (8x6)/Spark/Spark.exe");
+                System.Diagnostics.Process.Start("C:/Program Files (x86)/Spark/Spark.exe");
                 success = true;
             }
             catch (Exception ex)
