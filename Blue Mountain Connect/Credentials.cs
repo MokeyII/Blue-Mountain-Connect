@@ -8,7 +8,10 @@ namespace Blue_Mountain_Connect
 {
     public class Credentials
     {
-        public static String CreateSalt(int size)
+
+        public string salt = "abc1@3$5^7*9)-+xyz";
+
+        public String GenSalt(int size)
         {
             var rng = new System.Security.Cryptography.RNGCryptoServiceProvider();
             var buff = new byte[size];
@@ -16,7 +19,7 @@ namespace Blue_Mountain_Connect
             return Convert.ToBase64String(buff);
         }
         
-        public static String GenerateSHA256Hash(String input, String salt)
+        public String Hash(String input, String salt)
         {
             byte[] bytes = Encoding.UTF8.GetBytes(input + salt);
             System.Security.Cryptography.SHA256Managed sha256hashstring =

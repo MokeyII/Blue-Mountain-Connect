@@ -26,16 +26,15 @@ namespace Blue_Mountain_Connect
 
             try
             {
-         
-                
                 //Connection String
                 MySqlConnection conn = new MySqlConnection("server=192.168.0.78;Port=3306;database=BMEConnect;uid=BMEadmin;Pwd=Admin1234!$;");
 
                 //Select String
                 MySqlCommand cmd = new MySqlCommand("SELECT * FROM BMEConnect.credentials WHERE Username=@Username AND Password=@Password", conn);
 
-                string salt = "abc1@3$5^7*9)-+xyz";
-                String hashedPassword = Credentials.GenerateSHA256Hash(metroTxtPassword.Text, salt);
+                Credentials logIn = new Credentials();
+
+                String hashedPassword = logIn.Hash(metroTxtPassword.Text, logIn.salt);
 
                 //Parameters
                 cmd.Parameters.AddWithValue("@Username", metroTxtUsername.Text);
@@ -64,7 +63,7 @@ namespace Blue_Mountain_Connect
                     //Show Assign Task 
                     AssignTask fAssignTask = new AssignTask();
                     fAssignTask.Show();
-                    this.Hide();
+                    this.Close();
                 }
                 else
                 {
