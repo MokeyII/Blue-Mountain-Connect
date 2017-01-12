@@ -30,9 +30,13 @@ namespace Blue_Mountain_Connect
                 //Connection String
                 MySqlConnection conn = new MySqlConnection("server=192.168.0.78;Port=3306;database=BMEConnect;uid=BMEadmin;Pwd=Admin1234!$;");
                 
-                //Select String... ADD PAREMETERS!!!!!!!!!
-                MySqlCommand cmd = new MySqlCommand("SELECT * FROM BMEConnect.credentials WHERE Username='" + this.metroTxtUsername.Text + "' AND Password='" + this.metroTxtPassword.Text + "' ;", conn);
-                
+                //Select String
+                MySqlCommand cmd = new MySqlCommand("SELECT * FROM BMEConnect.credentials WHERE Username=@Username AND Password=@Password", conn);
+
+                //Parameters
+                cmd.Parameters.AddWithValue("@Username",metroTxtUsername.Text);
+                cmd.Parameters.AddWithValue("@Password",metroTxtPassword.Text);
+
                 // Define DataReader
                 MySqlDataReader myReader;
                 
