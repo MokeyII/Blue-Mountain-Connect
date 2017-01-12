@@ -64,7 +64,7 @@ namespace Blue_Mountain_Connect
                     //Incorrect login Credentials
                     MetroMessageBox.Show(this, "Incorrect Username or Password! Please Try Again!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     
-                    // Refocus Username TxtBox
+                    // Refocus Username TxtBox, makes user interface easier
                     metroTxtUsername.Focus();
                 }
             }
